@@ -3,3 +3,4 @@
 /.vscode/
 .DS_Store
 project.config.json
+/dist/

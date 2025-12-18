@@ -56,6 +56,26 @@
     color:black;
 }
 
+.h2w-dark .h2w__g-callout {
+  background-color:#1b1b1b;
+  border-left-color:#333;
+}
+.h2w-dark .h2w__g-callout.callout--tip {
+  border-left-color:#1aad16;
+}
+.h2w-dark .h2w__g-callout.callout--warning {
+  border-left-color:#e6a23c;
+}
+.h2w-dark .h2w__g-callout.callout--danger {
+  border-left-color:#f56c6c;
+}
+.h2w-dark .h2w__g-callout.callout--info {
+  border-left-color:#909399;
+}
+.h2w-dark .h2w__g-callout.callout--note {
+  border-left-color:#1aad16;
+}
+
 .h2w-dark .h2w__todoCheckbox .wx-checkbox-input {
     background:#2e2e2e; border-color:#494949;
 }

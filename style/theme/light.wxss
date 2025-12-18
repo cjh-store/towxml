@@ -55,6 +55,26 @@
     color:black;
 }
 
+.h2w-light .h2w__g-callout {
+  background-color:#f6f8fa;
+  border-left-color:#dfe2e5;
+}
+.h2w-light .h2w__g-callout.callout--tip {
+  border-left-color:#1aad16;
+}
+.h2w-light .h2w__g-callout.callout--warning {
+  border-left-color:#e6a23c;
+}
+.h2w-light .h2w__g-callout.callout--danger {
+  border-left-color:#f56c6c;
+}
+.h2w-light .h2w__g-callout.callout--info {
+  border-left-color:#909399;
+}
+.h2w-light .h2w__g-callout.callout--note {
+  border-left-color:#1aad16;
+}
+
 .h2w-light .h2w__lineNum {
     color:#ccc;
 }

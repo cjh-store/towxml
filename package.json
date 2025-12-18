@@ -5,6 +5,7 @@
   "main": "./dist/index.js",
   "scripts": {
     "build": "node build",
+    "build:jzt-mp": "TOWXML_DEPLOY_ROOT=/Users/cjh/code/work/jzt-mp/src/wxcomponents TOWXML_DEPLOY_NAME=towxml node build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

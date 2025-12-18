@@ -2,6 +2,14 @@ const fs = require('fs-extra'),
     path = require('path'),
     os = require('os'),
     config = require('./config'),
+    deploy = (() => {
+        const root = process.env.TOWXML_DEPLOY_ROOT;
+        if(!root){
+            return undefined;
+        };
+        const name = process.env.TOWXML_DEPLOY_NAME || 'towxml';
+        return { root, name };
+    })(),
     getPathInfo = (strPath, debug) => {
         const result = {
                 type: undefined,                                    // 类型 'dir'|'file'
@@ -209,9 +217,9 @@ class Build{
         };
 
         // 创建自定义组件配置
-        let obj = {component:true,usingComponents:{decode:`/towxml/decode`}};
+        let obj = {component:true,usingComponents:{decode:`./decode`}};
         config.components.forEach(item => {
-            obj.usingComponents[item] = `/towxml/${item}/${item}`
+            obj.usingComponents[item] = `./${item}/${item}`
         });
         fs.writeFileSync(path.join(_ts.outDir,'decode.json'),JSON.stringify(obj,null,2));
 
@@ -234,7 +242,15 @@ class Build{
             });
         };
 
-        console.log(`构建完成，请将『`,_ts.outDir,`』目录复制到小程序项目目录下${!_ts.option.debug ? '，并改名为『towxml』' : ''}`);
+        if(!_ts.option.debug && deploy && deploy.root){
+            const targetDir = path.join(deploy.root, deploy.name);
+            fs.removeSync(targetDir);
+            fs.ensureDirSync(deploy.root);
+            fs.copySync(_ts.outDir, targetDir);
+            console.log(`构建完成，产物目录：`, _ts.outDir, `；已同步到：`, targetDir);
+        }else{
+            console.log(`构建完成，请将『`,_ts.outDir,`』目录复制到小程序项目目录下${!_ts.option.debug ? '，并改名为『towxml』' : ''}`);
+        }
     }
     
 
@@ -371,5 +387,3 @@ class Build{
 new Build({
     debug:false
 }).init();
-
-

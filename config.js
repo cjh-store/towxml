@@ -3,7 +3,7 @@ module.exports = {
 
     // 数学公式解析API
     latex:{
-        api:'http://towxml.vvadd.com/?tex'
+        api:'http://172.19.161.82:8001/?tex'
     },
 
     // yuml图解析APPI
@@ -18,7 +18,8 @@ module.exports = {
         'ins',                      // 文本删除线支持
         'mark',                     // 文本高亮支持
         'emoji',                    // emoji表情支持
-        'todo'                      // todo支持
+        'todo',                     // todo支持
+        'callout'                   // ::: tip ... ::: 提示块支持
     ],
 
     // 代码高亮配置，保留需要的选项即可（尽量越少越好，不要随意调整顺序。部分高亮有顺序依赖）

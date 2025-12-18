@@ -16,6 +16,8 @@ module.exports = (md, option) => {
         return customTitleMap[key] || titleMap[key] || '';
     };
 
+    const colorTypeSet = new Set(['green', 'orange', 'yellow', 'red', 'blue']);
+
     function callout(state, startLine, endLine, silent) {
         const marker = 0x3A; // :
         let pos = state.bMarks[startLine] + state.tShift[startLine];
@@ -39,7 +41,10 @@ module.exports = (md, option) => {
 
         const type = match[1];
         const typeLower = type.toLowerCase();
-        const titleText = getTitle(typeLower, match[2]);
+        const rawTitle = match[2];
+        const hasExplicitTitle = !!(rawTitle && rawTitle.trim());
+        const titleText = getTitle(typeLower, rawTitle);
+        const shouldRenderTitle = hasExplicitTitle || (!colorTypeSet.has(typeLower) && !!titleText);
 
         let nextLine = startLine;
         let found = false;
@@ -83,7 +88,7 @@ module.exports = (md, option) => {
         token.markup = state.src.slice(state.bMarks[startLine] + state.tShift[startLine], state.bMarks[startLine] + state.tShift[startLine] + markerCount);
         token.attrs = [['class', `callout callout--${typeLower}`]];
 
-        if (titleText) {
+        if (shouldRenderTitle) {
             token = state.push('callout_title_open', 'g-callout-title', 1);
             token.block = true;
 

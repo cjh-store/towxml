@@ -280,6 +280,13 @@
     border-radius: 8rpx;
 }
 
+.h2w__g-callout.callout--tblue,
+.h2w__g-callout.callout--tblue1 {
+    padding: 36rpx 32rpx;
+    border-left-width: 12rpx;
+    border-radius: 16rpx;
+}
+
 .h2w__g-callout-title {
     display: block;
     font-weight: bold;
@@ -291,7 +298,7 @@
     display: block;
 }
 
-.h2w__g-callout-body .h2w__p {
+.h2w__g-callout-title + .h2w__g-callout-body .h2w__p {
     margin: 12rpx 0 0 0;
 }
 
@@ -333,6 +340,22 @@
 .h2w__ins,
 .h2w__u {
     text-decoration: underline;
+}
+
+.h2w__u.blank-underline {
+    text-decoration: none;
+    border-bottom-width: 4rpx;
+    border-bottom-style: solid;
+    text-indent: initial;
+    padding: 0 12rpx;
+    max-width: 100%;
+    box-sizing: border-box;
+    line-height: 1.2em !important;
+    white-space: normal;
+    word-break: break-word;
+    user-select: auto;
+    position: relative;
+    display: inline-block;
 }
 
 /**链接**/

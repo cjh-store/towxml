@@ -63,5 +63,6 @@ md.renderer.rules.emoji = (token,index)=>{
 
 // 导出模块
 module.exports = str => {
+    str = String(str || '').replace(/\uFEFF/g, '').replace(/&#8203;|&ZeroWidthSpace;|\u200b/g, '');
     return md.render(str);
 };

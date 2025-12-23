@@ -6,7 +6,6 @@
     "latex":"./latex/latex",
     "yuml":"./yuml/yuml",
     "table":"./table/table",
-    "echarts":"./echarts/echarts",
     "todogroup":"./todogroup/todogroup",
     "img":"./img/img"
   }

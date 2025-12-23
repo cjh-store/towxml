@@ -3,12 +3,12 @@ module.exports = {
 
     // 数学公式解析API
     latex:{
-        api:'http://172.19.161.82:8001/?tex'
+        api:'https://markdown-server.qimingdaren.com/?tex'
     },
 
     // yuml图解析APPI
     yuml:{
-        api:'http://towxml.vvadd.com/?yuml'
+        api:'https://markdown-server.qimingdaren.com/?yuml'
     },
 
     // markdown解析配置，保留需要的选项即可
@@ -255,7 +255,7 @@ module.exports = {
     // 自定义组件
     components:[
         'audio-player',             // 音频组件，建议保留，由于小程序原生audio存在诸多问题，towxml解决了原生音频播放器的相关问题
-        'echarts',                  // echarts图表支持
+        // 'echarts',               // echarts图表支持（暂未使用，禁用以减少包体积 ~370KB）
         'latex',                    // 数学公式支持
         'table',                    // 表格支持
         'todogroup',                // todo支持

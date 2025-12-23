@@ -5,3 +5,12 @@
 project.config.json
 /dist/
 decode.wxml
+.env
+.env.local
+config.local.js
+
+# Ignore all dotfiles except .vscode
+.*
+!.vscode/
+!.github/
+!.gitignore

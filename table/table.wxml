@@ -2,22 +2,40 @@
 <block wx:if="{{data.tag === 'table'}}">
     <view class="h2w__tableParent">
         <view class="{{data.attrs.class}}" width="{{data.attrs.width}}" style="{{data.attrs.style}}">
-            <!--thead、tbody、tfoot-->
             <block wx:if="{{data.children}}" wx:for="{{data.children}}" wx:for-item="item" wx:key="i">
-                <view wx:if="{{item.tag}}" class="{{item.attrs.class}}">
-                    <!--tr-->
-                    <block wx:if="{{item.children}}" wx:for="{{item.children}}" wx:for-item="item" wx:key="i">
-                        <view wx:if="{{item.tag}}" class="{{item.attrs.class}}">
-                            <!--td-->
-                            <block wx:if="{{item.children}}" wx:for="{{item.children}}" wx:for-item="item" wx:key="i">
-                                <view wx:if="{{item.tag}}" class="{{item.attrs.class}}" width="{{data.attrs.width}}" style="{{data.attrs.style}}">
-                                    <!--content-->
-                                    <decode wx:if="{{item.children}}" nodes="{{item}}"/>
-                                </view>
-                            </block>
-                        </view>
-                    </block>
-                </view>
+                <!-- 直接是 tr 的情况（没有 tbody） -->
+                <block wx:if="{{item.tag === 'tr'}}">
+                    <view class="{{item.attrs.class}}" style="{{item.attrs.style}}">
+                        <!--td/th-->
+                        <block wx:if="{{item.children}}" wx:for="{{item.children}}" wx:for-item="cell" wx:key="j">
+                            <view wx:if="{{cell.tag}}" class="{{cell.attrs.class}}" style="{{cell.attrs.style}}">
+                                <decode wx:if="{{cell.children}}" nodes="{{cell}}"/>
+                            </view>
+                        </block>
+                    </view>
+                </block>
+                <!-- 有 thead/tbody/tfoot 的情况 -->
+                <block wx:elif="{{item.tag === 'thead' || item.tag === 'tbody' || item.tag === 'tfoot'}}">
+                    <view class="{{item.attrs.class}}" style="{{item.attrs.style}}">
+                        <!--tr-->
+                        <block wx:if="{{item.children}}" wx:for="{{item.children}}" wx:for-item="tr" wx:key="j">
+                            <view wx:if="{{tr.tag}}" class="{{tr.attrs.class}}" style="{{tr.attrs.style}}">
+                                <!--td/th-->
+                                <block wx:if="{{tr.children}}" wx:for="{{tr.children}}" wx:for-item="cell" wx:key="k">
+                                    <view wx:if="{{cell.tag}}" class="{{cell.attrs.class}}" style="{{cell.attrs.style}}">
+                                        <decode wx:if="{{cell.children}}" nodes="{{cell}}"/>
+                                    </view>
+                                </block>
+                            </view>
+                        </block>
+                    </view>
+                </block>
+                <!-- 其他子元素（如 caption, colgroup 等） -->
+                <block wx:else>
+                    <view wx:if="{{item.tag}}" class="{{item.attrs.class}}" style="{{item.attrs.style}}">
+                        <decode wx:if="{{item.children}}" nodes="{{item}}"/>
+                    </view>
+                </block>
             </block>
         </view>
     </view>
